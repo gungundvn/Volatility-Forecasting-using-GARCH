@@ -1,18 +1,82 @@
 # Volatility-Forecasting-using-GARCH
 A Classical vs. Machine Learning Approach on S&amp;P 500 Data
 
-In my project, I explored modeling volatility in stock returns using ARCH and GARCH models. Financial returns often exhibit volatility clustering — periods of calm followed by turbulence — which standard mean models like ARIMA cannot capture.
+## 🔹 Overview
 
-I started by computing daily percentage returns and checking for autocorrelation using the Ljung-Box test and for heteroskedasticity using Engle’s ARCH test. Both confirmed volatility clustering, so GARCH was appropriate.
+* Project on **modeling and forecasting stock return volatility**.
+* Compared **classical econometric models (ARCH/GARCH)** with a **machine learning approach (XGBoost)**.
+* Data used:
 
-I then estimated a GARCH(1,1) model, where the variance today depends on both yesterday’s squared shock and yesterday’s variance. I interpreted the parameters: α captures the immediate impact of shocks, β measures persistence, and ω is the baseline variance. My model showed moderate persistence in volatility, consistent with financial market behavior.
+  * **S\&P 500 stock returns** (for GARCH modeling)
+  * **Repsol stock returns** (for volatility forecasting)
 
-I also ran diagnostic checks like Shapiro-Wilk for normality of residuals and experimented with higher-order GARCH models through a grid search. This highlighted the challenge of fitting volatility in individual stocks, which often have jumps.
+---
 
-Overall, this project taught me how to rigorously model and forecast risk, which is highly relevant for roles in risk management and quantitative finance, where volatility modeling underpins Value-at-Risk, option pricing, and portfolio optimization.
+## 🎯 Motivation
 
-As an extension to thsi project, I worked on forecasting the volatility of Repsol’s stock. Volatility is crucial in risk management and trading, so I wanted to compare two very different approaches. First, I applied GARCH, which is a classical time-series model specifically designed to capture volatility clustering. Then, I trained an XGBoost machine learning model to predict rolling monthly volatility.
+* Volatility = key measure of **financial risk**.
+* Standard mean models (e.g., ARIMA) fail to capture **volatility clustering**.
+* **GARCH** → interpretable, risk-focused.
+* **XGBoost** → captures nonlinear patterns, better forecasting power.
 
-What I found was that while GARCH explained volatility well in-sample, XGBoost gave better out-of-sample forecasts. The project really helped me understand volatility as a time-varying measure of risk, how to evaluate models on forecasting accuracy, and the trade-offs between classical econometric approaches and modern ML.
+---
 
-For me, the big takeaway was that in quant/risk work, it’s not about picking one tool — it’s about knowing the strengths of each and applying the right one depending on the context.
+## ⚙️ Methodology
+
+### Part I – ARCH & GARCH (S\&P 500)
+
+* Computed **daily percentage returns**.
+* Tests:
+
+  * **Ljung-Box** → autocorrelation
+  * **Engle’s ARCH** → heteroskedasticity
+* Fit **GARCH(1,1)** model:
+
+  * ω → baseline variance
+  * α → immediate impact of shocks
+  * β → persistence of volatility
+* Ran residual diagnostics + experimented with higher-order GARCH.
+
+### Part II – GARCH vs XGBoost (Repsol)
+
+* Created **rolling monthly volatility** (std dev of returns).
+* Fit **GARCH model** → in-sample explanation.
+* Trained **XGBoost Regressor** → out-of-sample forecasting.
+* Compared based on **forecasting accuracy**.
+
+---
+
+## 📊 Key Findings
+
+* Volatility clustering confirmed → **GARCH suitable**.
+* **GARCH(1,1)** showed moderate persistence (β close to 1).
+* **XGBoost outperformed GARCH** for out-of-sample forecasts.
+* Takeaway: **Use both tools depending on context** (interpretability vs accuracy).
+
+---
+
+## 🧑‍💻 Tools & Libraries
+
+* Python: `pandas`, `numpy`, `statsmodels`, `arch`, `scipy`, `xgboost`, `matplotlib`
+* Econometric Tests: Ljung-Box, Engle’s ARCH, Shapiro-Wilk
+
+---
+
+## ✅ Learning Outcomes
+
+* Understood **volatility as time-varying risk**.
+* Hands-on with **ARCH/GARCH modeling**.
+* Applied **ML (XGBoost) to financial time series**.
+* Balanced **interpretability vs prediction** in quant/risk modeling.
+
+---
+
+## 🚀 Extensions
+
+* Try **EGARCH / GJR-GARCH** (asymmetry, leverage effect).
+* Explore **LSTMs** for sequential forecasting.
+* Extend to **multi-asset portfolios**.
+
+---
+
+
